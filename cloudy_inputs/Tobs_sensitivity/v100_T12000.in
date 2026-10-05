@@ -1,0 +1,6 @@
+title IC443 NE diffuse shock -- v_shock=100 km/s, T_obs=12000K (upper end test)
+hden 3.0545
+constant temperature, t=12000 K linear
+stop column density 21.32
+iterate
+save results last "v100_T12000.rlt"

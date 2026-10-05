@@ -1,0 +1,9 @@
+title IC443 NE diffuse shock -- v_shock=65 km/s, T_obs=10000K, enhanced cosmic-ray test
+hden 2.7584
+constant temperature, t=10000 K linear
+stop column density 21.03
+# enhanced cosmic-ray ionization near IC 443 (Indriolo et al. 2010: zeta ~ 2e-15 s^-1,
+# about 10 x the default background); check the exact syntax in Hazy 1 before running
+cosmic rays background 10 linear
+iterate
+save results last "v65_T10000_CRtest.rlt"

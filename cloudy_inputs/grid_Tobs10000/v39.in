@@ -1,0 +1,6 @@
+title IC443 grid point v_shock=39 km/s
+hden 2.3112
+constant temperature, t=10000 K linear
+stop column density 20.58
+iterate
+save results last "v39.rlt"

@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this material, please cite the accompanying paper."
+title: "CLOUDY_IC443_HIBridge"
+authors:
+  - family-names: Rah
+    given-names: Maria
+    affiliation: "Byurakan Astrophysical Observatory"
+  - family-names: Alizadeh
+    given-names: Mina
+    affiliation: "Byurakan Astrophysical Observatory"
+  - family-names: Yeghikyan
+    given-names: Ararat G.
+    affiliation: "Byurakan Astrophysical Observatory"
+version: 1.0.0
+date-released: 2026-10-04
+license: MIT
+repository-code: "https://github.com/Maria-Rah/CLOUDY_IC443_HIBridge"
+preferred-citation:
+  type: article
+  title: "Independent Kinematic Confirmation of the IC443 Northeast Shock Velocity from HI 21 cm Observations"
+  authors:
+    - family-names: Rah
+      given-names: Maria
+    - family-names: Alizadeh
+      given-names: Mina
+    - family-names: Yeghikyan
+      given-names: Ararat G.
+  journal: "The Astrophysical Journal (submitted)"
+  year: 2026

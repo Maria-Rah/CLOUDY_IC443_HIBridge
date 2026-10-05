@@ -1,0 +1,230 @@
+[
+ {
+  "name": "max_excess_NE",
+  "l": 189.166,
+  "b": 3.225,
+  "ra": "6h18m12.7s",
+  "dec": "22d34m00s",
+  "sep_arcmin": 16.8,
+  "PA_deg": 90.0,
+  "excess_K": 3.65,
+  "edges": {
+   "2.5sigma": {
+    "edge": -52.6,
+    "offset": 48.6,
+    "vshock_adiabatic": 66.2,
+    "vshock_cooled": 50.8,
+    "deprojected_adiabatic": 98.3,
+    "deprojected_cooled": 74.5
+   },
+   "3.0sigma": {
+    "edge": -51.8,
+    "offset": 47.8,
+    "vshock_adiabatic": 65.2,
+    "vshock_cooled": 50.0,
+    "deprojected_adiabatic": 96.6,
+    "deprojected_cooled": 73.2
+   },
+   "4.0sigma": {
+    "edge": -43.5,
+    "offset": 39.5,
+    "vshock_adiabatic": 54.5,
+    "vshock_cooled": 42.2,
+    "deprojected_adiabatic": 80.3,
+    "deprojected_cooled": 61.2
+   }
+  },
+  "noise_K": 0.88,
+  "r_over_R": 0.75
+ },
+ {
+  "name": "max_excess_SE",
+  "l": 189.291,
+  "b": 3.025,
+  "ra": "6h17m42.2s",
+  "dec": "22d21m43s",
+  "sep_arcmin": 15.7,
+  "PA_deg": 142.0,
+  "excess_K": 13.63,
+  "edges": {
+   "2.5sigma": {
+    "edge": -69.9,
+    "offset": 65.9,
+    "vshock_adiabatic": 88.9,
+    "vshock_cooled": 67.5,
+    "deprojected_adiabatic": 123.3,
+    "deprojected_cooled": 93.1
+   },
+   "3.0sigma": {
+    "edge": -69.1,
+    "offset": 65.1,
+    "vshock_adiabatic": 87.9,
+    "vshock_cooled": 66.7,
+    "deprojected_adiabatic": 121.8,
+    "deprojected_cooled": 91.9
+   },
+   "4.0sigma": {
+    "edge": -62.5,
+    "offset": 58.5,
+    "vshock_adiabatic": 79.2,
+    "vshock_cooled": 60.3,
+    "deprojected_adiabatic": 109.6,
+    "deprojected_cooled": 82.9
+   }
+  },
+  "noise_K": 0.7,
+  "r_over_R": 0.7
+ },
+ {
+  "name": "max_excess_SW",
+  "l": 189.196,
+  "b": 2.875,
+  "ra": "6h16m56.3s",
+  "dec": "22d22m30s",
+  "sep_arcmin": 11.5,
+  "PA_deg": 184.0,
+  "excess_K": 10.87,
+  "edges": {
+   "2.5sigma": {
+    "edge": -61.7,
+    "offset": 57.7,
+    "vshock_adiabatic": 78.1,
+    "vshock_cooled": 59.5,
+    "deprojected_adiabatic": 90.6,
+    "deprojected_cooled": 68.8
+   },
+   "3.0sigma": {
+    "edge": -60.8,
+    "offset": 56.8,
+    "vshock_adiabatic": 77.0,
+    "vshock_cooled": 58.7,
+    "deprojected_adiabatic": 89.3,
+    "deprojected_cooled": 67.8
+   },
+   "4.0sigma": {
+    "edge": -59.2,
+    "offset": 55.2,
+    "vshock_adiabatic": 74.9,
+    "vshock_cooled": 57.1,
+    "deprojected_adiabatic": 86.8,
+    "deprojected_cooled": 66.0
+   }
+  },
+  "noise_K": 0.72,
+  "r_over_R": 0.51
+ },
+ {
+  "name": "max_excess_NW",
+  "l": 188.93,
+  "b": 3.03,
+  "ra": "6h16m59.2s",
+  "dec": "22d40m54s",
+  "sep_arcmin": 6.9,
+  "PA_deg": 358.0,
+  "excess_K": 1.8,
+  "edges": {
+   "2.5sigma": {
+    "edge": -31.1,
+    "offset": 27.1,
+    "vshock_adiabatic": 38.7,
+    "vshock_cooled": 30.8,
+    "deprojected_adiabatic": 40.4,
+    "deprojected_cooled": 32.0
+   },
+   "3.0sigma": {
+    "edge": -31.1,
+    "offset": 27.1,
+    "vshock_adiabatic": 38.7,
+    "vshock_cooled": 30.8,
+    "deprojected_adiabatic": 40.4,
+    "deprojected_cooled": 32.0
+   },
+   "4.0sigma": {
+    "edge": -30.3,
+    "offset": 26.3,
+    "vshock_adiabatic": 37.7,
+    "vshock_cooled": 30.1,
+    "deprojected_adiabatic": 39.3,
+    "deprojected_cooled": 31.2
+   }
+  },
+  "noise_K": 0.76,
+  "r_over_R": 0.31
+ },
+ {
+  "name": "paper_position",
+  "l": 189.291,
+  "b": 3.02,
+  "ra": "6h17m41.1s",
+  "dec": "22d21m35s",
+  "sep_arcmin": 15.6,
+  "PA_deg": 143.0,
+  "excess_K": 13.43,
+  "edges": {
+   "2.5sigma": {
+    "edge": -69.1,
+    "offset": 65.1,
+    "vshock_adiabatic": 87.9,
+    "vshock_cooled": 66.7,
+    "deprojected_adiabatic": 121.4,
+    "deprojected_cooled": 91.7
+   },
+   "3.0sigma": {
+    "edge": -63.3,
+    "offset": 59.3,
+    "vshock_adiabatic": 80.3,
+    "vshock_cooled": 61.1,
+    "deprojected_adiabatic": 110.8,
+    "deprojected_cooled": 83.8
+   },
+   "4.0sigma": {
+    "edge": -61.7,
+    "offset": 57.7,
+    "vshock_adiabatic": 78.1,
+    "vshock_cooled": 59.5,
+    "deprojected_adiabatic": 107.8,
+    "deprojected_cooled": 81.5
+   }
+  },
+  "noise_K": 0.74,
+  "r_over_R": 0.69
+ },
+ {
+  "name": "earlier_NE_position",
+  "l": 189.055,
+  "b": 3.23,
+  "ra": "6h18m00.4s",
+  "dec": "22d39m57s",
+  "sep_arcmin": 15.2,
+  "PA_deg": 67.0,
+  "excess_K": 2.15,
+  "edges": {
+   "2.5sigma": {
+    "edge": -36.9,
+    "offset": 32.9,
+    "vshock_adiabatic": 46.0,
+    "vshock_cooled": 36.0,
+    "deprojected_adiabatic": 61.0,
+    "deprojected_cooled": 46.9
+   },
+   "3.0sigma": {
+    "edge": -28.7,
+    "offset": 24.7,
+    "vshock_adiabatic": 35.6,
+    "vshock_cooled": 28.6,
+    "deprojected_adiabatic": 46.6,
+    "deprojected_cooled": 36.4
+   },
+   "4.0sigma": {
+    "edge": -27.0,
+    "offset": 23.0,
+    "vshock_adiabatic": 33.6,
+    "vshock_cooled": 27.2,
+    "deprojected_adiabatic": 43.7,
+    "deprojected_cooled": 34.4
+   }
+  },
+  "noise_K": 0.95,
+  "r_over_R": 0.67
+ }
+]

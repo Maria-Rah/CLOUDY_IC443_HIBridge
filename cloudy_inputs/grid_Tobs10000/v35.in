@@ -1,0 +1,6 @@
+title IC443 NE diffuse shock -- v_shock=35 km/s, T_obs=10000K (deceleration grid)
+hden 2.2159
+constant temperature, t=10000 K linear
+stop column density 20.48
+iterate
+save results last "v35.rlt"
