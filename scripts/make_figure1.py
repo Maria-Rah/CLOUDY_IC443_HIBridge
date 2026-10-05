@@ -5,7 +5,7 @@ Figure 1: (a) CGPS 1420 MHz continuum with contours of the HI excess
 wing edge (3 sigma criterion, 5x5-pixel average spectra) with continuum contours.
 The cross and dashed circle mark the centre and radius of IC 443 from Green's catalogue
 (06h17m00s, +22d34m; diameter 45 arcmin). A: position of maximum HI excess (spectrum
-of Figure 2); B: most negative wing edge that is stable against the detection threshold;
+of Figure 2); B: most negative wing edge that changes by less than 1 km/s between the 3 and 4 sigma criteria;
 NE: maximum HI excess in the northeastern quadrant.
 
 Inputs (data/): excess_map.npy, edge_map_3sigma.npy, excess_map_origin.json (written by
@@ -32,7 +32,7 @@ OUT = REPO / 'figures' / 'continuum_HIexcess_overlay.png' if len(sys.argv) <= 3 
 
 GREEN_LB = (189.033, 2.978)          # Green-catalogue centre (06h17m00s, +22d34m) in Galactic coordinates
 R_DEG = 22.5 / 60.0
-POS = {'A': (189.291, 3.025), 'B': (189.181, 2.930), 'NE': (189.166, 3.225)}
+POS = {'A': (189.291, 3.025), 'B': (189.176, 2.940), 'NE': (189.166, 3.225)}
 LEVELS = [1.3, 2.5, 5.0, 10.0]   # K; 1.3 K = off-source level + 3 sigma of the excess map (0.28 + 3 x 0.32 K)
 
 

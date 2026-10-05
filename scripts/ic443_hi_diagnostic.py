@@ -110,6 +110,7 @@ np.save('excess_map.npy', excess)
 json.dump({'x0_pixel_in_mosaic': x1, 'y0_pixel_in_mosaic': y1, 'note': '0-based pixel of excess[0,0]'},
           open('excess_map_origin.json', 'w'))
 cube5 = uniform_filter(np.nan_to_num(cube), size=(1, 5, 5))
+cube5[np.all(np.isnan(cube), axis=(1, 2))] = np.nan     # flagged channels stay excluded (noise, spectra)
 
 # sky geometry of every pixel
 yy, xx = np.mgrid[y1:y2, x1:x2]
@@ -136,7 +137,7 @@ def report(name, iy, ix):
             'deprojected_cooled': round(vshock(off / cos_t, True), 1) if np.isfinite(cos_t) else None}
         out['noise_K'] = round(noise, 2)
     out['r_over_R'] = round(float(rr), 2)
-    sm = uniform_filter1d(spec, 5)
+    sm = uniform_filter1d(np.nan_to_num(spec), 5); sm[~np.isfinite(spec)] = np.nan
     np.savetxt(f'spectrum_{name}.dat', np.c_[vel, spec, sm], fmt='%10.4f',
                header='v_LSR(km/s)  T_B_raw(K)  T_B_smoothed(K)  [5x5 average]')
     return out

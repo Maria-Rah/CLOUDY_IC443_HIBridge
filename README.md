@@ -24,6 +24,7 @@ contains the PLUTO shock-tube runs and the kinematic analysis.
 | `cloudy_inputs/Tobs_sensitivity` | v_shock = 65, 80, 100 km/s at T_obs = 8000, 10000, 12000 K | Section 5.2, Figure 7 |
 | `cloudy_inputs/cosmic_ray_test` | v_shock = 65 km/s, T_obs = 10^4 K, cosmic-ray background x10 | Section 5.3 |
 | `scripts/make_figure1.py` ... `make_figure7.py` | Figures 1, 2, 4, 5, 7 | |
+| `scripts/reproduce_numbers.py` | Recomputes every number quoted in the paper (Sections 2-5, Tables 1-2) from the files in this repository and prints it next to the value in the text | all |
 | `figures/` | Figures as used in the paper | |
 
 ## CLOUDY models
@@ -42,6 +43,7 @@ python bridge.py                                         # hden and column of th
 python check_cloudy_inputs.py ../cloudy_inputs           # inputs vs. bridge
 python extract_tb21.py ../cloudy_inputs/grid_Tobs10000   # T_B(21 cm) of the grid
 python make_figure2.py; python make_figure4.py; python make_figure5.py; python make_figure7.py
+python reproduce_numbers.py                              # all numbers of the paper
 python ic443_hi_diagnostic.py <HI cube> <1420 MHz image>   # maps and spectra (needs astropy)
 python ic443_fastest_hi.py   <HI cube> <1420 MHz image>   # wing-edge map, fastest HI
 python make_figure1.py    # needs the CGPS 1420 MHz FITS file in data/ (see data/README.md)

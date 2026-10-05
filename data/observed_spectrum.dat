@@ -1,4 +1,4 @@
-# v_LSR(km/s)  T_B_raw(K)  T_B_smoothed(K)  [5x5 average at position A, l=189.291 b=3.025; flagged channels = nan]
+# v_LSR(km/s)  T_B_raw(K)  T_B_smoothed(K)  [5x5 average]
  -125.1364        nan        nan
  -124.3120     1.4182     0.2410
  -123.4875     0.8232     0.1019

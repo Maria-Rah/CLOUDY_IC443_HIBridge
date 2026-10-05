@@ -34,7 +34,7 @@
     "deprojected_cooled": 61.2
    }
   },
-  "noise_K": 0.88,
+  "noise_K": 0.89,
   "r_over_R": 0.75
  },
  {
@@ -64,15 +64,15 @@
     "deprojected_cooled": 91.9
    },
    "4.0sigma": {
-    "edge": -62.5,
-    "offset": 58.5,
-    "vshock_adiabatic": 79.2,
-    "vshock_cooled": 60.3,
-    "deprojected_adiabatic": 109.6,
-    "deprojected_cooled": 82.9
+    "edge": -61.7,
+    "offset": 57.7,
+    "vshock_adiabatic": 78.1,
+    "vshock_cooled": 59.5,
+    "deprojected_adiabatic": 108.1,
+    "deprojected_cooled": 81.8
    }
   },
-  "noise_K": 0.7,
+  "noise_K": 0.71,
   "r_over_R": 0.7
  },
  {
@@ -110,7 +110,7 @@
     "deprojected_cooled": 66.0
    }
   },
-  "noise_K": 0.72,
+  "noise_K": 0.73,
   "r_over_R": 0.51
  },
  {
@@ -224,7 +224,7 @@
     "deprojected_cooled": 34.4
    }
   },
-  "noise_K": 0.95,
+  "noise_K": 0.96,
   "r_over_R": 0.67
  }
 ]
