@@ -1,5 +1,5 @@
 """
-Figure 5 -- IC443 Paper 1: Sedov-Taylor wing model.
+Figure 5 -- IC443 Paper 1 (revised): wing model with the cooled-gas velocity mapping.
 
 The filled bands are the contributions of the 20 PLUTO+CLOUDY grid points,
 stacked from the fastest (bottom) to the slowest (top) shock; the top edge of
@@ -8,10 +8,11 @@ the stack is the model itself (Equation 4), i.e. the sum of all components.
 Model (Equation 4 of the paper):
   T_model(v) = K * sum_i (TB21_i / N_H,i) * v_shock,i^(-p) * dv_i
                    * exp(-(v - v_i)^2 / (2 sigma^2))
-  v_i   = v_sys - v_post(v_shock,i)            (adiabatic R-H, validated vs PLUTO)
+  v_i   = v_sys - v_shock,i (1 - n_pre/n_H,i)   (gas cooled at constant pressure to T_obs; Section 5.5)
   N_H,i = column of CLOUDY run i (its own v_shock: n_H = P2/(k_B T_obs), L = 0.6 pc)
-  p = 3: energy-conserving blast wave, M ~ v^-2  ->  dM/dv ~ v^-3
+  p = 3: reference value of the effective index of the column distribution (Section 3.3)
 
+Components: CLOUDY grid points from 20 km/s up to the cooled-gas edge, 66.8 km/s.
 Free parameters: K and sigma, fitted to the smoothed spectrum in
 v_LSR = -70 ... -25 km/s. The script also prints the p = 8/3 and
 free-p fits for comparison.
@@ -25,6 +26,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.optimize import least_squares
+import sys
+OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / 'figures'
 
 # ---- CLOUDY grid (direct output, T_obs = 1e4 K) ----
 v_shock = np.array([20, 24, 28, 32, 35, 39, 43, 47, 50, 54, 58, 62, 65, 69,
@@ -54,7 +57,16 @@ v_post = np.array([jump(v)[1] for v in v_shock])
 N_H = 10.0**LOG_N_INPUT
 emis = TB21 / N_H                     # emissivity per unit column
 dv = np.gradient(v_shock)             # grid spacing (quadrature weight)
-v_comp = V_SYS - v_post               # LSR velocity of each component
+# cooled-gas mapping: the components extend to the shock velocity whose cooled gas reaches the wing edge
+# (66.8 km/s for the offset of 65.1 km/s); its emissivity per unit column is interpolated in the grid
+from scipy.optimize import brentq
+vcool = lambda vs: vs * (1 - N_PRE * KB * T_OBS / jump(vs)[2])   # gas cooled at constant pressure to T_obs
+V_EDGE = round(brentq(lambda vs: vcool(vs) - 65.1, 20, 200), 1)
+keep = v_shock < V_EDGE
+emis = np.append(emis[keep], np.interp(V_EDGE, v_shock, emis))
+v_shock = np.append(v_shock[keep], V_EDGE)
+dv = np.gradient(v_shock)
+v_comp = V_SYS - np.array([vcool(v) for v in v_shock])   # LSR velocity of each component
 
 # ---- observed spectrum ----
 data = np.genfromtxt(REPO / 'data' / 'observed_spectrum.dat', comments='#')
@@ -109,7 +121,7 @@ for j in order_v:
     cum = cum + comp[:, j]
 ax.plot(v_obs, T_obs, color='black', lw=2, label='observed spectrum', zorder=5)
 ax.plot(vfine, cum, color='#e91e8c', lw=2.5, ls='--',
-        label=rf'Sedov-Taylor model: sum of the 20 simulated components ($p=3$, rms $={rms3:.2f}$ K)', zorder=6)
+        label=rf'model: sum of the {v_shock.size} PLUTO-CLOUDY components (cooled gas, $p=3$, rms $={rms3:.2f}$ K)', zorder=6)
 ax.axvline(-25, color='black', lw=2, ls=':', zorder=7)
 ax.axvline(-70, color='0.4', lw=1, ls=':', zorder=7)
 ax.set_xlim(-90, 30)
@@ -120,5 +132,12 @@ ax.grid(alpha=0.2)
 cbar = plt.colorbar(plt.cm.ScalarMappable(cmap=cmap, norm=norm), ax=ax, pad=0.02)
 cbar.set_label(r'$v_{\rm shock}$ (km s$^{-1}$)', fontsize=9)
 plt.tight_layout()
-plt.savefig(REPO / 'figures' / 'SedovTaylor_wing_model.png', dpi=150)
-print("Saved SedovTaylor_wing_model.png")
+plt.savefig(OUT / 'wing_model.png', dpi=150)
+print('Saved', OUT / 'wing_model.png')
+w = np.exp(logK3) * emis * v_shock**(-3.0) * dv
+def share(v, cond):
+    c = w * np.exp(-0.5 * ((v - v_comp) / sigma3)**2); return 100 * c[cond].sum() / c.sum()
+print(f'share of v_shock<40 at -45 / -25: {share(-45, v_shock < 40):.0f} / {share(-25, v_shock < 40):.0f} %; v_shock>=60 at -65: {share(-65, v_shock >= 60):.0f} %')
+r = components(v_obs[sel], 3.0, sigma3, logK3).sum(1) - T_obs[sel]; i = np.argmax(abs(r))
+print(f'largest residual {abs(r[i]):.2f} K at {v_obs[sel][i]:.1f}; residual there {r[i]:+.2f}')
+print('cooled LSR velocity of the slowest/fastest components:', v_comp[0].round(1), v_comp[-1].round(1))

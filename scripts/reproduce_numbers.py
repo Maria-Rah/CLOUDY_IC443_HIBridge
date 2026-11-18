@@ -1,6 +1,7 @@
 """
 Recomputes, from the files in this repository, the numbers quoted in the paper
-(Sections 2.2-2.3, 3.2, 4.1-4.2, 5.1-5.2, 5.4 and Tables 1-2), and prints them next to
+(Sections 2.2-2.3, 3.2, 4.1-4.2, 5.1, 5.3-5.5 and Tables 1-2;
+the numbers added in the revision, including the cooled-gas fits, are in revision_numbers.py), and prints them next to
 the values in the text. Inputs: data/observed_spectrum.dat, data/excess_map.npy,
 data/excess_map_origin.json, results/*.json, cloudy_inputs/*/tb21.csv (written by
 extract_tb21.py). Usage: python reproduce_numbers.py
@@ -118,8 +119,7 @@ def fit(p, mapping='ad', free=False):
     return best
 for lab, p, mp, fr, paper in (('adiabatic p=3', 3, 'ad', False, '19.2, 0.93'), ('adiabatic p=8/3', 8/3, 'ad', False, '17.9, 0.96'),
                               ('adiabatic p free', 3, 'ad', True, 'p=4.9: 23.0, 0.89'), ('adiabatic p=2.2', 2.2, 'ad', False, '15.5, 1.04'),
-                              ('adiabatic p=1', 1, 'ad', False, '8.4, 2.39'), ('adiabatic p=1.5', 1.5, 'ad', False, 'rms 1.4'),
-                              ('cooled p=3', 3, 'cl', False, '15.4, 1.06'), ('cooled p free', 3, 'cl', True, 'p=6.7: 22.2, 0.86')):
+                              ('adiabatic p=1', 1, 'ad', False, '8.4, 2.39'), ('adiabatic p=1.5', 1.5, 'ad', False, '10.5, 1.45')):
     x, rms, res = fit(p, mp, fr)
     val = (f'p={x[2]:.1f}: ' if fr else '') + f'{x[0]:.1f}, {rms:.2f}'
     rep(f'fit {lab}: sigma, rms', val, paper)
@@ -129,9 +129,4 @@ for lab, p, mp, fr, paper in (('adiabatic p=3', 3, 'ad', False, '19.2, 0.93'), (
         rep('p=2.5..6: rms spread (K)', f'{max(rms6)-min(rms6):.2f}', '< 0.1')
         sig3 = x[0]; K3 = np.exp(x[1])
 lin = np.polyfit(vo, To, 1); rep('straight line: rms (K)', f'{np.sqrt(np.mean((np.polyval(lin, vo) - To)**2)):.2f}', '0.80')
-vc = comps('ad'); w = K3 * base * vg**(-3.0)
-def frac(vv, cond):
-    c = w * np.exp(-0.5 * ((vv - vc) / sig3)**2); return 100 * c[cond].sum() / c.sum()
-rep('share of v_shock<40 at -45 / -25 km/s (%)', f'{frac(-45, vg < 40):.0f} / {frac(-25, vg < 40):.0f}', '72 / 89')
-rep('share of v_shock>=60 at -65 km/s (%)', f'{frac(-65, vg >= 60):.0f}', '30')
 rep('-25 km/s corresponds to v_shock (km/s)', f'{v_ad(21.0):.1f}', '31.1')

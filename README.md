@@ -2,8 +2,7 @@
 
 Observational analysis, CLOUDY input files, PLUTO-CLOUDY bridge, and wing-model scripts for the paper
 
-> M. Rah, M. Alizadeh, & A. G. Yeghikyan, *Independent Kinematic Confirmation of the IC443
-> Northeast Shock Velocity from HI 21 cm Observations*, submitted to The Astrophysical Journal (2026).
+> M. Rah, M. Alizadeh, & A. G. Yeghikyan, *A Kinematic Lower Limit on the Shock Velocity of IC443 from HI 21 cm Observations*, submitted to The Astrophysical Journal (2026).
 
 The companion repository [PLUTO_IC443_ShockValidation](https://github.com/Maria-Rah/PLUTO_IC443_ShockValidation)
 contains the PLUTO shock-tube runs and the kinematic analysis.
@@ -21,11 +20,13 @@ contains the PLUTO shock-tube runs and the kinematic analysis.
 | `scripts/check_cloudy_inputs.py` | Checks every CLOUDY input against `bridge.py` | |
 | `scripts/extract_tb21.py` | Reads T_B(21 cm) and the spin temperature from CLOUDY outputs | Table 1, Figures 4 and 7 |
 | `cloudy_inputs/grid_Tobs10000` | The 20-point grid (v_shock = 20 to 87.9 km/s, T_obs = 10^4 K): inputs and outputs | Section 3.2, Table 1, Figure 4 |
-| `cloudy_inputs/Tobs_sensitivity` | v_shock = 65, 80, 100 km/s at T_obs = 8000, 10000, 12000 K | Section 5.2, Figure 7 |
-| `cloudy_inputs/cosmic_ray_test` | v_shock = 65 km/s, T_obs = 10^4 K, cosmic-ray background x10 | Section 5.3 |
+| `cloudy_inputs/Tobs_sensitivity` | v_shock = 65, 80, 100 km/s at T_obs = 8000, 10000, 12000 K | Section 5.3, Figure 7 |
+| `cloudy_inputs/cosmic_ray_test` | v_shock = 65 km/s, T_obs = 10^4 K, cosmic-ray background x10 | Section 5.4 |
 | `scripts/make_figure1.py` ... `make_figure7.py` | Figures 1, 2, 4, 5, 7 | |
-| `scripts/reproduce_numbers.py` | Recomputes every number quoted in the paper (Sections 2-5, Tables 1-2) from the files in this repository and prints it next to the value in the text | all |
-| `figures/` | Figures as used in the paper | |
+| `scripts/reproduce_numbers.py` | Recomputes the numbers of the submitted version that are kept in the revised paper (Sections 2-5, Tables 1-2) and prints them next to the value in the text | all |
+| `scripts/revision_numbers.py` | Recomputes the numbers added in the revision: HI column of the wing and pre-shock density, cooling time and length, kinematic limits for other post-shock states, wing-model fits with both velocity mappings and their sensitivity tests, ionization of the CLOUDY slabs, positions relative to the shocked molecular clumps | Sections 3.2-3.4, 4.2, 5.1-5.5, 5.8, Table 2 |
+| `data/cooling/m-00.cie` | Solar-metallicity collisional-equilibrium cooling function of Sutherland & Dopita (1993, ApJS, 88, 253), used by `revision_numbers.py` | Section 5.5 |
+| `figures/` | Figures as used in the paper (`wing_model.png` is Figure 5 of the revised paper) | |
 
 ## CLOUDY models
 
@@ -43,7 +44,8 @@ python bridge.py                                         # hden and column of th
 python check_cloudy_inputs.py ../cloudy_inputs           # inputs vs. bridge
 python extract_tb21.py ../cloudy_inputs/grid_Tobs10000   # T_B(21 cm) of the grid
 python make_figure2.py; python make_figure4.py; python make_figure5.py; python make_figure7.py
-python reproduce_numbers.py                              # all numbers of the paper
+python reproduce_numbers.py                              # numbers of the submitted version kept in the paper
+python revision_numbers.py ../data/cooling/m-00.cie      # numbers added in the revision
 python ic443_hi_diagnostic.py <HI cube> <1420 MHz image>   # maps and spectra (needs astropy)
 python ic443_fastest_hi.py   <HI cube> <1420 MHz image>   # wing-edge map, fastest HI
 python make_figure1.py    # needs the CGPS 1420 MHz FITS file in data/ (see data/README.md)
